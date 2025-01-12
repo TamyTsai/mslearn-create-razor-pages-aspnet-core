@@ -11,4 +11,41 @@
 
 <!-- New Pizza form will go here -->
 
-<!-- List of pizzas will go here -->
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Size</th>
+            <th scope="col">Gluten Free</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var pizza in Model.PizzaList)
+    @* <tbody> 內的 @foreach 陳述式會 逐一 查看 披薩清單 *@
+    @* Model 屬性 是指 在 程式碼 後置檔案 中 建立的 PizzaListModel 物件。 *@
+    @* PizzaList 屬性 是 指在 程式碼 後置檔案 中 定義的 PizzaList 屬性。 *@
+    @* @foreach 陳述式 的 每次反覆運算 都會 建立 <tr> 元素 來 保存 披薩資料 *@
+    {
+        <tr>
+            <td>@pizza.Name</td>
+            @* Razor 語法 可 用來顯示 <td> 元素中 的 披薩資料。 
+            此語法是用來顯示 在 pizza 變數中 儲存之 Pizza 物件 的 屬性。 *@
+            <td>@($"{pizza.Price:C}")</td>
+            @* 使用 C# 字串內 插補點 將 Price 格式化 *@
+            <td>@pizza.Size</td>
+            <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
+            @* 三元運算式 會用來將 IsGlutenFree 屬性的值顯示為「✔️」或空白儲存格 *@
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                @* 建立表單來刪除披薩 *@
+                @* asp-page-handler 屬性 表示應將 表單 提交至 Delete 程式碼後置檔案中 的 處理常式 *@
+                @* asp-route-id 屬性表示 應將 Pizza 物件的 Id 屬性 傳遞至 Delete 處理常式 *@
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
