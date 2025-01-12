@@ -26,9 +26,39 @@ namespace ContosoPizza.Pages
 
         public void OnGet()
         // 從 PizzaService 物件 擷取 披薩清單 的 方法
+        // 頁面初始化
         {
             PizzaList = _service.GetPizzas(); // 將其儲存在 PizzaList 屬性 中
         }
+
+        [BindProperty]
+        // BindProperty 屬性 會套用到 NewPizza 屬性
+        // BindProperty 屬性 是 用來將 NewPizza 屬性 繫結至 Razor 頁面
+        // 提出 HTTP POST 要求時，NewPizza 屬性 會以 使用者的 輸入 來填入
+        public Pizza NewPizza { get; set; } = default!;
+        // 名為 NewPizza 的屬性 會 新增至 PizzaListModel 類別
+        // NewPizza 是 Pizza 物件
+        // NewPizza 屬性會 初始化 為 default!
+        // default! 關鍵字是用來將 NewPizza 屬性 初始化 為 null。 
+        // 這可防止編譯器 產生 有關 未初始化之 NewPizza 屬性 的 警告
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid || NewPizza == null)
+            // ModelState.IsValid 屬性 可用來 判斷 使用者 的 輸入 是否 有效
+            // 驗證規則 是從 Models/Pizza.cs 中 Pizza 類別上 的 屬性 (例如 Required 和 Range) 推斷而來
+            {
+                return Page(); // 如果 使用者 的 輸入無效，則會 呼叫 Page 方法 來 重新轉譯 頁面
+            }
+
+            _service.AddPizza(NewPizza);
+            // NewPizza 屬性 是 用來 將 新的披薩 新增至 _service 物件
+
+            return RedirectToAction("Get");
+            // RedirectToAction 方法 是 用來 將 使用者 重新導向 至 Get 頁面 處理常式，
+            // 這會 使用 更新的 披薩清單 重新轉譯 頁面
+        }
+
     }
 
     

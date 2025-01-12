@@ -9,8 +9,50 @@
 
 <h1>Pizza List 🍕</h1>
 
+@* 新增Pizza 頁面 *@
 <!-- New Pizza form will go here -->
+<form method="post">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@* asp-validation-summary 屬性 是 用來 顯示 整個模型 的 驗證錯誤 *@
+<div class="form-group">
+    <label asp-for="NewPizza.Name" class="control-label"></label>
+    @* 使用 asp-for 屬性，將 每個 表單欄位 (<input> 和 <select> 元素) 與 每個 <label> 繫結 至 相應的 NewPizza 屬性 *@
+    <input asp-for="NewPizza.Name" class="form-control" />
+    <span asp-validation-for="NewPizza.Name" class="text-danger"></span>
+    @* asp-validation-for 屬性 是 用來 顯示 每個 表單欄位 的 任何 驗證錯誤。 *@
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Size" class="control-label"></label>
+    <select asp-for="NewPizza.Size" class="form-control" id="PizzaSize">
+        <option value="">-- Select Size --</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+    </select>
+    <span asp-validation-for="NewPizza.Size" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="NewPizza.IsGlutenFree" /> @Html.DisplayNameFor(model => model.NewPizza.IsGlutenFree)
+        @* @Html.DisplayNameFor 方法 可用來 顯示 IsGlutenFree 屬性 的 顯示名稱 *@
+        @* 這是用來 顯示 屬性顯示名稱 的 Razor 協助 程式方法 *@
+        @* 以這種 方式 執行 標籤 可確保 當 使用者 按一下標籤 時，會 選取核取方塊 *@
+    </label>
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Price" class="control-label"></label>
+    <input asp-for="NewPizza.Price" class="form-control" />
+    <span asp-validation-for="NewPizza.Price" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Create" class="btn btn-primary" />
+    @* 將 標籤 為 Create 的 提交按鈕 會 新增至表單，以將 表單資料 POST至伺服器 *@
+    @* 在執行階段，當使用者 選取此 [Create] 按鈕時，瀏覽器會將 表單 當做 HTTP POST 要求 傳送至 伺服器。 *@
+</div>
+</form>
 
+@* Pizza清單頁面 *@
+<!-- List of pizzas will go here -->
 <table class="table mt-5">
     <thead>
         <tr>
@@ -49,3 +91,10 @@
     }
     </tbody>
 </table>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+    @* 部分標籤 協助程式 *@
+    @* 這會 將 用戶端驗證指令碼 插入 頁面 *@
+    @* 用戶端驗證指令碼 可用來 在表單提交至 伺服器之前，驗證 使用者 的 輸入 *@
+}
