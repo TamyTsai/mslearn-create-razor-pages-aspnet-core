@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+// migrations 資料夾 包含 用來 建立 資料庫結構描述 的 程式碼。
+
 #nullable disable
 
 namespace ContosoPizza.Migrations

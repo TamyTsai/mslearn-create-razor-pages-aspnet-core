@@ -2,6 +2,7 @@
 
 namespace ContosoPizza.Models;
 
+// model 資料夾 包含 代表披薩 的 Pizza 類別。
 public class Pizza
 {
     public int Id { get; set; }
