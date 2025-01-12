@@ -1,10 +1,15 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "The Home for Pizza Lovers"; // 將標題變更為「歡迎使用 Contoso Pizza」
+    TimeSpan timeInBusiness = DateTime.Now - new DateTime(2018, 8, 14); // 計算 自 業務開始後 所經過 的 時間量
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Contoso Pizza</h1>
+    <p class="lead">The best pizza in town for @Convert.ToInt32(timeInBusiness.TotalDays) days!</p>
+    @* @ 字元是用來從 HTML 切換 至 Razor 語法 *@
+    @* Convert.ToInt32 方法可用來 將 timeInBusiness 變數的 TotalDays 屬性 轉換為 整數 *@
+    @* Convert 類別是 System 命名空間 的一部分，
+    由[ContosoPizza.csproj] 檔案中的 <ImplicitUsings> 元素自動匯入 *@
 </div>

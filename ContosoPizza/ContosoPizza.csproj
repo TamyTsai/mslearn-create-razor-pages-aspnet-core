@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Convert 類別是 System 命名空間的一部分，由[ContosoPizza.csproj] 檔案中的 <ImplicitUsings> 元素自動匯入 -->
   </PropertyGroup>
 
   <ItemGroup>
