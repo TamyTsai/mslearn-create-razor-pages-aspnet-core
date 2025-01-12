@@ -81,6 +81,9 @@
             @* 三元運算式 會用來將 IsGlutenFree 屬性的值顯示為「✔️」或空白儲存格 *@
             <td>
                 <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                @* 當使用者按一下 披薩的 [刪除] 按鈕時，會呼叫 PizzaList.cshtml.cs 中的OnPostDelete 方法 *@
+                @* 頁面 知道 使用這個方法，因為 Pages/PizzaList.cshtml 中 [刪除] 按鈕上的 asp-page-handler 屬性設定為 Delete *@
+                @* PizzaList.cshtml.cs中id 參數 繫結至 URL 中的 id 路由值，是 使用 Pages/PizzaList.cshtml 中 [刪除] 按鈕上的 asp-route-id 屬性 來完成 *@
                     <button class="btn btn-danger">Delete</button>
                 </form>
                 @* 建立表單來刪除披薩 *@

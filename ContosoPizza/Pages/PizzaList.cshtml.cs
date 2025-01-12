@@ -59,6 +59,18 @@ namespace ContosoPizza.Pages
             // 這會 使用 更新的 披薩清單 重新轉譯 頁面
         }
 
+        // 當使用者按一下 披薩的 [刪除] 按鈕時，會呼叫 OnPostDelete 方法
+        // 頁面 知道 使用這個方法，因為 Pages/PizzaList.cshtml 中 [刪除] 按鈕上的 asp-page-handler 屬性設定為 Delete
+        public IActionResult OnPostDelete(int id)
+        // id 參數是 用來 識別 要刪除的披薩
+        // id 參數 繫結至 URL 中的 id 路由值
+        // 這是 使用 Pages/PizzaList.cshtml 中 [刪除] 按鈕上的 asp-route-id 屬性 來完成
+        {
+            _service.DeletePizza(id);
+
+            return RedirectToAction("Get");
+        }
+
     }
 
     
