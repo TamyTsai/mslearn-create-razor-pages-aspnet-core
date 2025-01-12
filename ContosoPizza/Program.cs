@@ -11,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<PizzaContext>(options => // 類別 會在 Program.cs (第 10 行) 註冊 相依性插入。
     options.UseSqlite("Data Source=ContosoPizza.db"));
+builder.Services.AddScoped<PizzaService>(); // 向容器註冊 PizzaService 類別
+// 此程式碼會 向 相依性插入容器 註冊 `PizzaService` 類別。
+// `AddScoped` 方法 表示 應該為 每個 HTTP 要求 建立新的 `PizzaService` 物件。
+// 現在可將 `PizzaService` 插入任何 Razor 頁面。
 
 var app = builder.Build();
 
