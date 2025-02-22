@@ -1,3 +1,5 @@
+微軟官方網站 .NET 8.0 使用適合初學者的 ASP.NET Core，建置 Web 應用程式 教程作品
+
 # Starter app for Create a web UI with ASP.NET Core
 
 Welcome! This is the starter app for the [Create a web UI with ASP.NET Core](https://learn.microsoft.com/training/modules/create-razor-pages-aspnet-core/) Microsoft Training module.
